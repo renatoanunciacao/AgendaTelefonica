@@ -14,13 +14,13 @@ public class AgendaController {
         banco = new AgendaDbHelper(context);
     }
 
-    public String insereData(String nome, String telefone){
+    public String insereDados(String nome, String telefone){
         db = banco.getWritableDatabase();
         ContentValues values = new ContentValues();
         values.put(AgendaDbHelper.COLUMN_NOME, nome);
         values.put(AgendaDbHelper.COLUMN_TELEFONE, telefone);
         long newRowId = db.insert(AgendaDbHelper.TABLE_NAME, null, values);
-
+        Log.i("id ", String.valueOf(newRowId));
         db.close();
         if(newRowId == -1){
             return "Erro ao inserir contato";
@@ -31,14 +31,12 @@ public class AgendaController {
 
     public Cursor carregaDados() {
         Cursor cursor;
-        String[] campos = {AgendaDbHelper.COLUMN_NOME, AgendaDbHelper.COLUMN_TELEFONE};
+        String[] campos = {AgendaDbHelper.ID,AgendaDbHelper.COLUMN_NOME, AgendaDbHelper.COLUMN_TELEFONE};
         db = banco.getReadableDatabase();
         cursor = db.query(AgendaDbHelper.TABLE_NAME, campos, null,null, null,null,null);
         if(cursor != null){
             cursor.moveToFirst();
-
         }
-        cursor.close();
         db.close();
         return  cursor;
     }

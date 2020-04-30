@@ -63,8 +63,9 @@ public class MainActivity extends AppCompatActivity{
             AgendaController ac = new AgendaController(this);
             String resultado = "";
             if (contatoSelecionado == null) {
-                resultado = ac.insereData(nome.getText().toString(),
+                resultado = ac.insereDados(nome.getText().toString(),
                         telefone.getText().toString());
+
             } else {
                 resultado = ac.alteraRegistro(contatoSelecionado.getId(),
                         nome.getText().toString(),
@@ -72,8 +73,8 @@ public class MainActivity extends AppCompatActivity{
 
             }
             Toast.makeText(this, resultado, Toast.LENGTH_SHORT).show();
-            Log.i("inseriu",resultado);
-//            atualizaListView();
+            Log.i("dados: ",resultado.toString());
+         atualizaListView();
         } else {
             Toast.makeText(this,
                     "Escreva um nome e um numero de contato",
