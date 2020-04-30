@@ -20,7 +20,6 @@ public class AgendaController {
         values.put(AgendaDbHelper.COLUMN_NOME, nome);
         values.put(AgendaDbHelper.COLUMN_TELEFONE, telefone);
         long newRowId = db.insert(AgendaDbHelper.TABLE_NAME, null, values);
-        Log.i("id ", String.valueOf(newRowId));
         db.close();
         if(newRowId == -1){
             return "Erro ao inserir contato";
